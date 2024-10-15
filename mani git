@@ -1,0 +1,14 @@
+def start_game():
+    print("Welcome to the Adventure Game!")
+    print("You find yourself in a dark room. There are two doors: one to the left and one to the right.")
+    
+    choice = input("Which door do you choose? (left/right): ").lower()
+    
+    if choice == "left":
+        print("You find a treasure chest! You win!")
+    elif choice == "right":
+        print("You encounter a monster! Game over.")
+    else:
+        print("Invalid choice! Please choose left or right.")
+
+start_game()
