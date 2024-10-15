@@ -1,0 +1,37 @@
+import socket
+
+def start_server():
+    # Create a socket object
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    # Define the host and port
+    host = '127.0.0.1'  # Localhost
+    port = 12345
+
+    # Bind the socket to the host and port
+    server_socket.bind((host, port))
+
+    # Start listening for connections
+    server_socket.listen(5)
+    print(f"Server listening on {host}:{port}")
+
+    while True:
+        # Accept a connection
+        client_socket, addr = server_socket.accept()
+        print(f"Connection from {addr} has been established!")
+
+        while True:
+            # Receive data from the client
+            data = client_socket.recv(1024)
+            if not data:
+                break  # If no data, the client has closed the connection
+
+            print(f"Received: {data.decode('utf-8')}")
+            # Echo the data back to the client
+            client_socket.sendall(data)
+
+        client_socket.close()
+        print(f"Connection with {addr} closed.")
+
+if __name__ == "__main__":
+    start_server()
